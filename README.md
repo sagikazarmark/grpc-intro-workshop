@@ -1,28 +1,4 @@
-# Workshop Template
-
-This repository is a template for creating workshop material and slides for coding topics.
-It comes with a basic structure (README, Makefile) for tooling and a [RevealJS](https://revealjs.com/) slide deck example.
-The slides are published to [GitHub Pages](https://pages.github.com/) using [Quarto](https://quarto.org/).
-
-Here is a workshop based on this example: https://github.com/sagikazarmark/temporal-intro-workshop/
-
-## Usage
-
-1. Create a new repo based on this template
-1. Clone the repository
-1. Install dependencies
-    - **Option 1 (recommended):** Make sure [nix](https://nixos.org) and [direnv](https://direnv.net) are installed, then run `direnv allow`
-    - **Option 2:** Install [Quarto](https://quarto.org/docs/get-started/) manually
-1. Make changes to [slides/index.qmd](slides/index.qmd)
-1. Run `make slides` to open the slides in your browser
-1. Add your workshop material to the repo (eg. code examples to [examples](examples), solutions to [solutions](solutions))
-1. Add some tests to [.github/workflows/ci.yaml](.github/workflows/ci.yaml)
-1. Fill out the README template below
-1. Push changes
-1. Enable GitHub Pages in your repository settings
-
------DELETE THIS LINE AND ABOVE-----
-# [YOUR WORKSHOP TITLE]
+# gRPC intro workshop
 
 ## Prerequisites
 

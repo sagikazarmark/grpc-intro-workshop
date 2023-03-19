@@ -1,5 +1,5 @@
 {
-  description = "My workshop template";
+  description = "gRPC intro workshop";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
