@@ -1,0 +1,4 @@
+/.direnv/
+/bin/
+/docker-compose.override.yml
+/var/
