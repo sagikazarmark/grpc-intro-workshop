@@ -15,6 +15,10 @@ format:
 - When to use gRPC?
 - Alternatives
 
+# Code samples
+
+[https://github.com/sagikazarmark/grpc-intro-workshop](https://github.com/sagikazarmark/grpc-intro-workshop)
+
 # About RPC
 
 ## Definition 🤔
@@ -148,7 +152,7 @@ Host: api.example.com
 
 _whisper_ microservices
 
-## gRPC shortcomings
+## gRPC weeknesses
 
 - Limited web/browser support
 - Not human-readable format (more difficult to debug)
