@@ -35,9 +35,9 @@ format:
 - client-server architecture
 - request-response protocol
 
----
+## {.nostretch background-color="white"}
 
-`<diagram showcasing how RPC works>`
+![[Source](https://www.geeksforgeeks.org/remote-procedure-call-rpc-in-operating-system/)](assets/rpc-overview.png){fig-align="center"}
 
 ## Interface Definition Language
 
@@ -116,13 +116,20 @@ Host: api.example.com
 - Client streaming RPC
 - Bidirectional streaming RPC
 
+## Example 4: Server streaming RPC
+
 # Advanced features
+
+---
+
+- Metadata
+- [Error handling](https://grpc.io/docs/guides/error/)
 
 # Alternatives
 
 ## Twirp
 
-Developped at Twitch as a lightweight alternative to gRPC.
+Developed at Twitch as a lightweight alternative to gRPC.
 
 <br>
 
