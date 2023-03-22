@@ -12,6 +12,7 @@ format:
 - Introduction to gRPC
 - Implementing a gRPC service
 - Advanced features
+- When to use gRPC?
 - Alternatives
 
 # About RPC
@@ -135,6 +136,28 @@ Host: api.example.com
 - Unary vs Stream
 
 ## Example 6: Server unary interceptor
+
+# When to use gRPC?
+
+---
+
+> With great power comes great responsibility
+
+---
+
+- API operates on _actions_ instead of _resources_
+- When efficient communication is a goal
+- In polyglot environments
+- No need for supporting a wide range of clients
+- Internal APIs
+
+_whisper_ microservices
+
+## gRPC shortcomings
+
+- Limited web/browser support
+- Not human-readable format (more difficult to debug)
+- Steeper learning curve
 
 # Alternatives
 
