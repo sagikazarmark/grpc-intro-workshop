@@ -31,11 +31,6 @@ format:
 - **normal (local) procedure call** → interface
 - **no details for the remote interaction** → implementation
 
-## Characteristics
-
-- client-server architecture
-- request-response protocol
-
 ## {.nostretch background-color="white"}
 
 ![[Source](https://www.geeksforgeeks.org/remote-procedure-call-rpc-in-operating-system/)](assets/rpc-overview.png){fig-align="center"}
