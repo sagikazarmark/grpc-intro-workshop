@@ -7,10 +7,7 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/reflection"
-	status "google.golang.org/grpc/status"
 )
 
 type service struct {
@@ -18,25 +15,6 @@ type service struct {
 }
 
 func (s service) SayHello(ctx context.Context, in *HelloRequest) (*HelloReply, error) {
-	md, _ := metadata.FromIncomingContext(ctx)
-
-	if token := md.Get("token"); len(token) != 1 || token[0] != "root" {
-		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
-	}
-
-	if in.GetName() == "noone" {
-		s := status.New(codes.InvalidArgument, "cannot greet noone")
-
-		err := &HelloError{
-			Name:   "noone",
-			Reason: "cannot greet noone",
-		}
-
-		s, _ = s.WithDetails(err)
-
-		return nil, s.Err()
-	}
-
 	log.Printf("received: %v", in.GetName())
 
 	return &HelloReply{Message: fmt.Sprintf("Hello %s", in.GetName())}, nil

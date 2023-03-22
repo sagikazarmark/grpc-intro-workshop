@@ -18,32 +18,26 @@ type service struct {
 }
 
 func (s service) SayHello(ctx context.Context, in *HelloRequest) (*HelloReply, error) {
-	md, _ := metadata.FromIncomingContext(ctx)
-
-	if token := md.Get("token"); len(token) != 1 || token[0] != "root" {
-		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
-	}
-
-	if in.GetName() == "noone" {
-		s := status.New(codes.InvalidArgument, "cannot greet noone")
-
-		err := &HelloError{
-			Name:   "noone",
-			Reason: "cannot greet noone",
-		}
-
-		s, _ = s.WithDetails(err)
-
-		return nil, s.Err()
-	}
-
 	log.Printf("received: %v", in.GetName())
 
 	return &HelloReply{Message: fmt.Sprintf("Hello %s", in.GetName())}, nil
 }
 
+func unaryInterceptor(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		return nil, status.Errorf(codes.InvalidArgument, "no incoming metadata in rpc context")
+	}
+
+	if token := md.Get("token"); len(token) != 1 || token[0] != "root" {
+		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
+	}
+
+	return handler(ctx, req)
+}
+
 func main() {
-	server := grpc.NewServer()
+	server := grpc.NewServer(grpc.UnaryInterceptor(unaryInterceptor))
 
 	// Register Greeter service implementation on the gRPC server.
 	RegisterGreeterServer(server, service{})

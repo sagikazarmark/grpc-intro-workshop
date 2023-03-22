@@ -1,0 +1,25 @@
+version: '3'
+
+includes:
+  example04:
+    taskfile: ./example04/Taskfile.yaml
+    dir: ./example04/
+  example05:
+    taskfile: ./example05/Taskfile.yaml
+    dir: ./example05/
+  example06:
+    taskfile: ./example06/Taskfile.yaml
+    dir: ./example06/
+
+tasks:
+  generate:
+    cmds:
+      - task: example04:generate
+      - task: example05:generate
+      - task: example06:generate
+
+  cleanup:
+    cmds:
+      - task: example04:cleanup
+      - task: example05:cleanup
+      - task: example06:cleanup

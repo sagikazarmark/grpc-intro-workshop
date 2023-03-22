@@ -128,6 +128,14 @@ Host: api.example.com
 
 ## Example 5: Authentication and error handling
 
+## Interceptors
+
+- Act as middlewares during the request lifecycle
+- Server vs Client
+- Unary vs Stream
+
+## Example 6: Server unary interceptor
+
 # Alternatives
 
 ## Twirp

@@ -10,6 +10,15 @@ includes:
   example03:
     taskfile: ./solutions/example03/Taskfile.yaml
     dir: ./solutions/example03/
+  example04:
+    taskfile: ./solutions/example04/Taskfile.yaml
+    dir: ./solutions/example04/
+  example05:
+    taskfile: ./solutions/example05/Taskfile.yaml
+    dir: ./solutions/example05/
+  example06:
+    taskfile: ./solutions/example06/Taskfile.yaml
+    dir: ./solutions/example06/
 
 tasks:
   build:
@@ -17,24 +26,36 @@ tasks:
       - task: example01:build
       - task: example02:build
       - task: example03:build
+      - task: example04:build
+      - task: example05:build
+      - task: example06:build
 
   generate:
     cmds:
       - task: example01:generate
       - task: example02:generate
       - task: example03:generate
+      - task: example04:generate
+      - task: example05:generate
+      - task: example06:generate
 
   verify:
     cmds:
       - task: example01:verify
       - task: example02:verify
       - task: example03:verify
+      - task: example04:verify
+      - task: example05:verify
+      - task: example06:verify
 
   cleanup:
     cmds:
       - task: example01:cleanup
       - task: example02:cleanup
       - task: example03:cleanup
+      - task: example04:cleanup
+      - task: example05:cleanup
+      - task: example06:cleanup
 
   slides:
     cmds:

@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package example02;
+package example06;
 
-option java_package = "example02";
+option java_package = "example06";
 option java_multiple_files = true;
-option go_package = "github.com/sagikazarmark/grpc-intro-workshop/examples/example02";
+option go_package = "github.com/sagikazarmark/grpc-intro-workshop/solutions/example06";
 
 service Greeter {
   // Sends a greeting
