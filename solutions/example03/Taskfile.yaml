@@ -1,0 +1,23 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - go build -o /dev/null
+
+  run:
+    cmds:
+      - go run . {{.CLI_ARGS}}
+
+  generate:
+    cmds:
+      - buf generate
+
+  verify:
+    deps: [generate]
+    cmds:
+      - git diff --quiet -- .
+
+  cleanup:
+    cmds:
+      - rm -rf *.pb.go

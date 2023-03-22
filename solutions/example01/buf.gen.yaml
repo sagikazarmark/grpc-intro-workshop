@@ -1,0 +1,13 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/sagikazarmark/grpc-intro-workshop/solutions/example01
+    except:
+      - buf.build/googleapis/googleapis
+plugins:
+  - name: go
+    out: generated/buf/go
+    opt: paths=source_relative
+  - name: java
+    out: generated/buf/java

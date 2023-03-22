@@ -1,0 +1,45 @@
+version: '3'
+
+tasks:
+  build:
+    cmds:
+      - go build -o /dev/null
+
+  run:
+    cmds:
+      - go run main.go
+
+  generate:
+    cmds:
+      - task: generate:go
+      - task: generate:go:relative
+      - task: generate:java
+      - task: generate:buf
+
+  generate:go:
+    cmds:
+      - mkdir -p generated/go
+      - protoc --go_out=./generated/go/ person.proto
+
+  generate:go:relative:
+    cmds:
+      - mkdir -p generated/go
+      - protoc --go_out=./generated/go/ --go_opt=paths=source_relative person.proto
+
+  generate:java:
+    cmds:
+      - mkdir -p generated/java
+      - protoc --java_out=./generated/java/ person.proto
+
+  generate:buf:
+    cmds:
+      - buf generate
+
+  verify:
+    deps: [generate]
+    cmds:
+      - git diff --quiet -- .
+
+  cleanup:
+    cmds:
+      - rm -rf generated

@@ -1,0 +1,41 @@
+version: '3'
+
+includes:
+  example01:
+    taskfile: ./solutions/example01/Taskfile.yaml
+    dir: ./solutions/example01/
+  example02:
+    taskfile: ./solutions/example02/Taskfile.yaml
+    dir: ./solutions/example02/
+  example03:
+    taskfile: ./solutions/example03/Taskfile.yaml
+    dir: ./solutions/example03/
+
+tasks:
+  build:
+    cmds:
+      - task: example01:build
+      - task: example02:build
+      - task: example03:build
+
+  generate:
+    cmds:
+      - task: example01:generate
+      - task: example02:generate
+      - task: example03:generate
+
+  verify:
+    cmds:
+      - task: example01:verify
+      - task: example02:verify
+      - task: example03:verify
+
+  cleanup:
+    cmds:
+      - task: example01:cleanup
+      - task: example02:cleanup
+      - task: example03:cleanup
+
+  slides:
+    cmds:
+      - quarto preview slides/

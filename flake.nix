@@ -22,18 +22,63 @@
           ];
         };
       in
-      {
-        devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            git
-            gnumake
-            quarto
-            decktape
-          ];
+      rec {
+        devShells = {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              git
+              gnumake
+              go-task
 
-          shellHook = ''
-            echo "quarto $(quarto --version)"
-          '';
+              quarto
+              decktape
+
+              protobuf
+              protoc-gen-go
+              protoc-gen-go-grpc
+              buf
+
+              go
+
+              grpcurl
+            ];
+
+            shellHook = ''
+              echo "quarto $(quarto --version)"
+              protoc --version
+              echo "buf $(buf --version)"
+            '';
+          };
+
+          solutions = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              git
+              go-task
+
+              protobuf
+              protoc-gen-go
+              protoc-gen-go-grpc
+              buf
+
+              go
+            ];
+
+            shellHook = ''
+              protoc --version
+              echo "buf $(buf --version)"
+            '';
+          };
+
+          slides = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              quarto
+            ];
+
+            shellHook = ''
+              echo "quarto $(quarto --version)"
+            '';
+          };
         };
-      });
+      }
+    );
 }

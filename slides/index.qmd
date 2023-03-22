@@ -1,32 +1,150 @@
 ---
-title: "My workshop template"
-subtitle: Subtitle
-# format:
-#   revealjs:
-#     theme: sky
-# highlight-style: monokai
+title: "gRPC intro workshop"
+format:
+  revealjs:
+    theme: serif
 ---
 
 # Agenda
 
-- Item 1
-- Item 2
-- Item 3
+- About RPC
+- RPC vs REST
+- Introduction to gRPC
+- Implementing a gRPC service
+- Advanced features
+- Alternatives
 
-# Documentation
+# About RPC
 
-See the [Quarto documentation](https://quarto.org/docs/presentations/revealjs/).
+## Definition 🤔
 
-# PDF
+> [...] a computer program causes a procedure (subroutine) to execute **in a different address space**
+> (commonly on _another computer on a shared network_), which is coded as if it were a **normal (local) procedure call**,
+> **without** the programmer explicitly coding the **details for the remote interaction**
+>
+> _[Wikipedia](https://en.wikipedia.org/wiki/Remote_procedure_call)_
 
-Want to grab a PDF version?
+## Definition
 
-Try the [PDF Export mode](https://quarto.org/docs/presentations/revealjs/presenting.html#print-to-pdf) from Chrome/Chromium.
+- **in a different address space** → someone else's computer
+- **normal (local) procedure call** → interface
+- **no details for the remote interaction** → implementation
 
-Alternatively (and sometimes for better result), use [decktape](https://github.com/astefanutti/decktape):
+## Characteristics
 
-```shell
-decktape --size='2048x1536' 'http://localhost:7996' slides.pdf
+- client-server architecture
+- request-response protocol
+
+---
+
+`<diagram showcasing how RPC works>`
+
+## Interface Definition Language
+
+- a language for describing communication
+- programming language agnostic
+- serves as a contract for RPC APIs
+
+# RPC vs REST
+
+---
+
+|                       | **RPC**                          | **REST**                     |
+|-----------------------|----------------------------------|------------------------------|
+| _Operates on_         | procedures<br>("function calls") | resources                    |
+| _Underlying protocol_ | unspecified                      | primarily HTTP               |
+| _Interactions_        | protocol encapsulated            | HTTP is part of the contract |
+
+---
+
+- RPC is more suitable for APIs describing _actions_ (vs _resources_)
+- RPC has better type-safety guarantees
+- RPC is more strict
+- REST may be more performant when operating on large amount of data
+
+## RPC example in HTTP
+
+```http
+POST /sayHello HTTP/1.1
+Host: api.example.com
+Content-Type: application/json
+
+{
+  "userId": 1
+}
 ```
 
+## REST example
+
+```http
+GET /users/1/greeting HTTP/1.1
+Host: api.example.com
+```
+
+# Introduction to gRPC
+
+## About gRPC
+
+- High performance
+- Language agnostic ([supported languages](https://grpc.io/docs/languages/))
+- Uses http/2 transport
+- Bi-directional streaming
+- Pluggable auth, tracing, load balancing and health checking
+
+## {.nostretch}
+
+![[Source](https://grpc.io/docs/what-is-grpc/introduction/)](assets/grpc-overview.svg){fig-align="center"}
+
+## IDL: Protocol Buffers
+
+- Interface Definition Language
+- Message format (binary serialization)
+- Code generation framework
+
+## Example 1: Protocol Buffers
+
+# Implementing a gRPC service
+
+## Example 2: Service definition and server implementation
+
+## Example 3: Using the client stub
+
+## RPC lifecycle
+
+- _Unary RPC_
+- Server streaming RPC
+- Client streaming RPC
+- Bidirectional streaming RPC
+
+# Advanced features
+
+# Alternatives
+
+## Twirp
+
+Developped at Twitch as a lightweight alternative to gRPC.
+
+<br>
+
+[https://github.com/twitchtv/twirp](https://github.com/twitchtv/twirp)
+
+<br>
+
+Read the [announcement blog post](https://blog.twitch.tv/en/2018/01/16/twirp-a-sweet-new-rpc-framework-for-go-5f2febbf35f/).
+
+## Connect
+
+A gRPC-compatible framework with an emphasis on browser- and web-compatibility (from the creators of [Buf](https://buf.build/)).
+
+<br>
+
+[https://connect.build/](https://connect.build/)
+
 # The End
+
+_Any questions?_
+
+# Further reading
+
+- https://grpc.io/
+- https://protobuf.dev/
