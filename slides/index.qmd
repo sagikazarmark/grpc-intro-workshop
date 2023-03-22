@@ -122,8 +122,11 @@ Host: api.example.com
 
 ---
 
+- [Authentication](https://grpc.io/docs/guides/auth/)
 - Metadata
 - [Error handling](https://grpc.io/docs/guides/error/)
+
+## Example 5: Authentication and error handling
 
 # Alternatives
 
@@ -155,3 +158,4 @@ _Any questions?_
 
 - https://grpc.io/
 - https://protobuf.dev/
+- https://github.com/grpc-ecosystem
