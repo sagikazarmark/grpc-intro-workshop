@@ -152,7 +152,7 @@ Host: api.example.com
 
 _whisper_ microservices
 
-## gRPC weeknesses
+## gRPC weaknesses
 
 - Limited web/browser support
 - Not human-readable format (more difficult to debug)
