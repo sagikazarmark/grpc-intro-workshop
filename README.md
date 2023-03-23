@@ -1,28 +1,29 @@
 # gRPC intro workshop
 
+Record (HUN): https://www.youtube.com/watch?v=ahb4qqKlaaA
+
 ## Prerequisites
 
-> Add your prerequisites here
-> For example: Make sure [nix](https://nixos.org) and [direnv](https://direnv.net) are installed, then run `direnv allow`
+1. Git, Make, etc.
+2. Make sure you have the latest [Go](https://golang.org/)
+3. Install the following tools:
+  - [Protobuf](https://github.com/protocolbuffers/protobuf#protocol-compiler-installation)
+  - Protobuf plugins
+    - [Go](https://protobuf.dev/reference/go/go-generated/)
+    - [Go gRPC](https://grpc.io/docs/languages/go/quickstart/)
+  - [Buf](https://buf.build/docs/installation/)
+  - [grpcurl](https://github.com/fullstorydev/grpcurl#installation)
+  - [Task] (https://taskfile.dev/) _(optional)_
 
+Alternatively, install [nix](https://nixos.org) and [direnv](https://direnv.net), then run `direnv allow` once you checked out the repository.
 
 ## Usage
 
-> Adjust the instructions below
-
 1. Checkout this repository
-1. Run `make up`
-1. ...
-
-
-## [HOW TO USE THIS REPO]
-
-> Add your instructions here
-
+1. Go through the examples
+1. Check out the solutions if you need inspiration
 
 ## Development
-
-> Add your instructions for working on the workshop material.
 
 Make sure [nix](https://nixos.org) and [direnv](https://direnv.net) are installed, then run `direnv allow`.
 
