@@ -7,7 +7,10 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/reflection"
+	status "google.golang.org/grpc/status"
 )
 
 type service struct {
@@ -20,8 +23,21 @@ func (s service) SayHello(ctx context.Context, in *HelloRequest) (*HelloReply, e
 	return &HelloReply{Message: fmt.Sprintf("Hello %s", in.GetName())}, nil
 }
 
+func unaryInterceptor(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		return nil, status.Errorf(codes.InvalidArgument, "no incoming metadata in rpc context")
+	}
+
+	if token := md.Get("token"); len(token) != 1 || token[0] != "root" {
+		return nil, status.Error(codes.Unauthenticated, "unauthenticated")
+	}
+
+	return handler(ctx, req)
+}
+
 func main() {
-	server := grpc.NewServer()
+	server := grpc.NewServer(grpc.UnaryInterceptor(unaryInterceptor))
 
 	// Register Greeter service implementation on the gRPC server.
 	RegisterGreeterServer(server, service{})

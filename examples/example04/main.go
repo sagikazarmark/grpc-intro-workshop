@@ -1,10 +1,10 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"net"
+	"time"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -14,10 +14,21 @@ type service struct {
 	UnimplementedGreeterServer
 }
 
-func (s service) SayHello(ctx context.Context, in *HelloRequest) (*HelloReply, error) {
+func (s service) SayHello(in *HelloRequest, stream Greeter_SayHelloServer) error {
 	log.Printf("received: %v", in.GetName())
 
-	return &HelloReply{Message: fmt.Sprintf("Hello %s", in.GetName())}, nil
+	for i := 0; i < 5; i++ {
+		resp := &HelloReply{Message: fmt.Sprintf("Hello %s", in.GetName())}
+		if i > 0 {
+			resp = &HelloReply{Message: fmt.Sprintf("Hello again %s", in.GetName())}
+		}
+
+		stream.Send(resp)
+
+		time.Sleep(time.Second)
+	}
+
+	return nil
 }
 
 func main() {

@@ -8,7 +8,7 @@ option go_package = "github.com/sagikazarmark/grpc-intro-workshop/solutions/exam
 
 service Greeter {
   // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc SayHello (HelloRequest) returns (stream HelloReply) {}
 }
 
 message HelloRequest {

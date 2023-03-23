@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package example01;
+
+option java_package = "example01";
+option java_multiple_files = true;
+option go_package = "github.com/sagikazarmark/grpc-intro-workshop/examples/example01/generated/go";
+
+message Person {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+}
